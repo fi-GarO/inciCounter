@@ -18,8 +18,10 @@ COPY *.json ./
 
 RUN go mod tidy
 
+# zbuildí v containeru linux binary s názvem "inci-counter" (název může být libovolný)
 RUN go build -o /inci-counter
 
 EXPOSE 8080
 
-CMD [ "/inci-counter" ]
+# spouští zbuilděnou binárku v containeru (pokud hlásí, že ji nevidí nebo, že neexistuje, pravděpodobně je problém v nekompatibilitě architektury počítače (32bit, 64bit, amd...), potřeba dohledat fix)
+CMD [ "/inci-counter" ] 
