@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  app:
+    image: jirituryna/incicounter:latest 
+    container_name: incicounter
+    ports:
+      - 8080:8080
+    volumes:
+      - ./counter.db:/app/counter.db
+volumes:
+  counter.db:
+
+
