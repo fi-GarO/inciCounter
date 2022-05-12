@@ -7,6 +7,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 var DB *gorm.DB
@@ -162,19 +163,45 @@ func SetCounter(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": newCounter})
 }
 
+func PeriodicIncrement(){
+	_, err := http.Get("http://127.0.0.1:8080/counters/inc/0")
+	if err != nil {
+		panic(err)
+		} else {
+		fmt.Print("HTTP request successfuly sent. \n")
+		}
+}
+
+
+
 func main() {
 	router := gin.Default()
 
 	fmt.Print("Starting the APP\n")
 	ConnectDatabase()
 	router.POST("/counters", CreateCounter)
-	router.PATCH("/counters/inc/:id", IncrementCounter)
+	router.GET("/counters/inc/:id", IncrementCounter)
 	router.PATCH("/counters/set/:id/:count", SetCounter)
-	router.PATCH("/counters/dec/:id", DecrementCounter)
+	router.GET("/counters/dec/:id", DecrementCounter)
 	router.PATCH("/counters/res/:id", ResetCounter)
 	router.GET("/counters", FindCounters)
 	router.DELETE("/counters/:id", DeleteCounter)
 	router.DELETE("/counters/del/all", DeleteAllCounters)
 
+	go func() {
+		for true {
+			currentTime := time.Now()
+			fmt.Println("Current time:", currentTime)
+			if currentTime.Hour() == 0 {
+				PeriodicIncrement()
+			} else {
+				fmt.Println("Current hour is not 00:XX, it is:", currentTime.Hour())
+			}
+			time.Sleep(time.Hour)
+		}
+	}()
+
 	router.Run(":8080")
+
+	
 }

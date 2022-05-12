@@ -7,7 +7,8 @@
 
 # API Commands
 ## Incident Counter
-- docker image - 
+- docker image:
+ 
 jirituryna/incicounter:latest
 
 
@@ -24,12 +25,12 @@ curl localhost:8080/counters --include --header "Content-Type: application/json"
 ## INCREMENT / DECREMENT a counter
 - incrementuje counter s definovaným id (localhost:8080/counters/1)
 
-- curl localhost:8080/counters/inc/0 --request "PATCH"
-- curl localhost:8080/counters/dec/0 --request "PATCH"
+curl localhost:8080/counters/inc/0 --request "GET"
+curl localhost:8080/counters/dec/0 --request "GET"
 
 
 ## Delete a counter
-- smaže counter se specifikovaným id
+- Resetuje counter se specifikovaným id
 
 curl localhost:8080/counters/0 --request "DELETE"
 
@@ -39,7 +40,7 @@ curl localhost:8080/counters/0 --request "DELETE"
 curl localhost:8080/counters/del/all --request "DELETE"
 
 ## Reset Counter
-- smaže counter podle specifikovanýho id
+- Resetuje counter podle specifikovanýho id
 
 curl localhost:8080/counters/res/0 --request "PATCH"
 

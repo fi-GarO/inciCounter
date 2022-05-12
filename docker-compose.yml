@@ -9,6 +9,9 @@ services:
     # nakopíruje soubor z hosta soubor ./counter.db do containeru /app/counter.db
     volumes:
       - ./counter.db:/app/counter.db
+    # řeší Timezonu  
+    environment:
+      - TZ=Europe/Prague
       
 # Persistentní úložiště -> Data z containeru se přepisují do souboru "counter.db" na hostovy
 volumes:
