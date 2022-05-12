@@ -1,13 +1,14 @@
 # How to start
-1. Spuštění přes composer -> **docker-compose up** 
-2. Spuštění standalone container -> **docker run -d -p 8080:8080 jirituryna/incicounter:latest** 
-3. Pokud udělám změnu -> **docker build -t jirituryna/incicounter .** -> vygeneruje na locale nový docker image
-4. Push do Docker Hubu -> **docker hub push jirituryna/incicounter:latest**
+1. Spuštění přes composer -> docker-compose up 
+2. Spuštění standalone container -> docker run -d -p 8080:8080 jirituryna/incicounter:latest
+3. Pokud udělám změnu -> docker build -t jirituryna/incicounter .
+-> vygeneruje na locale nový docker image
+4. Push do Docker Hubu -> docker hub push jirituryna/incicounter:latest
 
 # API Commands
 ## Incident Counter
 - docker image - 
-**jirituryna/incicounter:latest**
+jirituryna/incicounter:latest
 
 
 ## Get all counters
