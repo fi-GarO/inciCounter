@@ -3,12 +3,12 @@
 2. Spuštění standalone container -> docker run -d -p 8080:8080 jirituryna/incicounter:latest
 3. Pokud udělám změnu -> docker build -t jirituryna/incicounter .
 -> vygeneruje na locale nový docker image
-4. Push do Docker Hubu -> docker hub push jirituryna/incicounter:latest
+4. Push do Docker Hubu -> docker push jirituryna/incicounter:latest
 
 # API Commands
 ## Incident Counter
 - docker image:
- 
+
 jirituryna/incicounter:latest
 
 
@@ -73,3 +73,13 @@ docker exec -it <containerid> /bin/bash
 
 ## Přidání packagů v containeru
 apk add ...
+
+
+curl --request GET \
+  --url 'https://jablotroncloudservices.atlassian.net//rest/api/2/search?jql=project=SUPPORT&maxResults=10' \
+  --user 'jiri.turyna@jablotron.cz:XbwcBLVZGg3NNfRBBQTT1135' \
+  --header 'Accept: application/json' | jq .
+
+  incidents - projectID: 10177
+
+  
